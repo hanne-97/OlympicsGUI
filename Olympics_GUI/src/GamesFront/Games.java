@@ -6,11 +6,17 @@ package GamesFront;
 // DUO: ALejandra Reyes & Hanne Mendoza
 
 import javax.swing.JOptionPane;
+import java.util.Random;
+import java.text.DecimalFormat;
 
 public class Games extends javax.swing.JFrame {
     
     public Games() {
+        JOptionPane.showMessageDialog(null, "Bienvenido a Swimming Olympics! \nPresione START para empezar la simulación de la olimpiada");
+        setLocation(190,100); 
+        
         initComponents();
+        
     }
 
     /**
@@ -118,17 +124,17 @@ public class Games extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(labelPic)
-                .addGap(304, 304, 304))
+                .addGap(331, 331, 331))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(labelPic)
-                .addContainerGap(28, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
@@ -301,7 +307,153 @@ public class Games extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOmegaMouseClicked
 
     private void btnStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnStartActionPerformed
-        // TODO add your handling code here:
+        Random rand = new Random();
+        Object [] opciones = {"2","3","4","5"};
+        
+        int elijio = JOptionPane.showOptionDialog(null, "Seleccione el numero de nadadores", "Nadadores",JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, opciones, opciones[0]);
+        
+        switch (elijio) {
+            
+            case 0:     
+                JOptionPane.showMessageDialog(null, "Competencia en Modo Normal");
+                JOptionPane.showMessageDialog(null, "Ha comenzado la competencia!");
+                float [][] matriz = new float [2][3];
+                DecimalFormat df = new DecimalFormat("#.00");
+                
+                for(int i = 0 ; i < matriz.length ; i++){
+                    for(int j = 0 ; j < matriz[i].length ; j++){                        
+                        float nad1 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad2 = 10 + ( 50 - 10 ) * rand.nextFloat();  
+                        if(i==0){
+                         matriz[i][j]+= nad1; 
+                         
+                        }else{
+                            matriz[i][j]+=nad2;
+                        }                        
+                    }                    
+                }
+                
+                
+                for(int i = 0 ; i < matriz.length ; i++){
+                    for(int j = 0 ; j < matriz[i].length ; j++){
+                        System.out.print(df.format(matriz[i][j])+ " ");                        
+                    }
+                    System.out.println("");
+                }
+                
+                float [] sumaNadadores = sumfilas(2,3,matriz);
+                imprimir_arreglo(sumaNadadores);
+                
+                break;
+            case 1:
+                JOptionPane.showMessageDialog(null, "Competencia en Modo Eliminatoria");
+                float [][] matriz2 = new float [3][3];
+                DecimalFormat df2 = new DecimalFormat("#.00");
+                
+                
+                for(int i = 0 ; i < matriz2.length ; i++){
+                    for(int j = 0 ; j < matriz2[i].length ; j++){                        
+                        float nad1 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad2 = 10 + ( 50 - 10 ) * rand.nextFloat();  
+                        float nad3 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        if(i==0){
+                         matriz2[i][j] += nad1;   
+                        }else if(i==1){
+                            matriz2[i][j] += nad2;
+                        }else{
+                            matriz2[i][j] += nad3;
+                        }                        
+                    }                    
+                }
+                for(int i = 0 ; i < matriz2.length ; i++){
+                    for(int j = 0 ; j < matriz2[i].length ; j++){
+                        System.out.print(df2.format(matriz2[i][j])+ " ");                        
+                    }
+                    System.out.println("");
+                }
+                
+                float [] sumaNadadores2 = sumfilas(3,3,matriz2);
+                imprimir_arreglo(sumaNadadores2);
+                
+                break;
+                
+            case 2:
+                JOptionPane.showMessageDialog(null, "Competencia en Modo Eliminatoria");
+                float [][] matriz3 = new float [4][3];
+                DecimalFormat df3 = new DecimalFormat("#.00");
+               
+                
+                for(int i = 0 ; i < matriz3.length ; i++){
+                    for(int j = 0 ; j < matriz3[i].length ; j++){                        
+                        float nad1 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad2 = 10 + ( 50 - 10 ) * rand.nextFloat();  
+                        float nad3 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad4 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        if(i==0){
+                         matriz3[i][j] += nad1;   
+                        }else if(i==1){
+                            matriz3[i][j] += nad2;
+                        }else if(i==2){
+                            matriz3[i][j] += nad3;
+                        }else{
+                            matriz3[i][j]+= nad4;
+                        }                        
+                    }                    
+                }
+                
+                for(int i = 0 ; i < matriz3.length ; i++){
+                    for(int j = 0 ; j < matriz3[i].length ; j++){
+                        System.out.print(df3.format(matriz3[i][j])+ " ");                        
+                    }
+                    System.out.println("");
+                }
+                
+                float [] sumaNadadores3 = sumfilas(4,3,matriz3);
+                imprimir_arreglo(sumaNadadores3);
+                
+                break;
+                
+            case 3:
+                JOptionPane.showMessageDialog(null, "Competencia en Modo Eliminatoria");
+                float [][] matriz4 = new float [5][3];
+                DecimalFormat df4 = new DecimalFormat("#.00");
+               
+                
+                for(int i = 0 ; i < matriz4.length ; i++){
+                    for(int j = 0 ; j < matriz4[i].length ; j++){                        
+                        float nad1 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad2 = 10 + ( 50 - 10 ) * rand.nextFloat();  
+                        float nad3 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad4 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        float nad5 = 10 + ( 50 - 10 ) * rand.nextFloat();
+                        
+                        if(i==0){
+                         matriz4[i][j] += nad1;   
+                        }else if(i==1){
+                            matriz4[i][j] += nad2;
+                        }else if(i==2){
+                            matriz4[i][j] += nad3;
+                        }else if(i==3){
+                            matriz4[i][j]+= nad4;
+                        }else{
+                            matriz4[i][j]+= nad5;
+                        }                        
+                    }                    
+                }
+                
+                for(int i = 0 ; i < matriz4.length ; i++){
+                    for(int j = 0 ; j < matriz4[i].length ; j++){
+                        System.out.print(df4.format(matriz4[i][j])+ " ");                        
+                    }
+                    System.out.println("");
+                }
+                
+                float [] sumaNadadores4 = sumfilas(5,3,matriz4);
+                imprimir_arreglo(sumaNadadores4);
+                
+                break;                
+       
+        }//switch        
     }//GEN-LAST:event_btnStartActionPerformed
 
     private void btnResultsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResultsActionPerformed
@@ -312,6 +464,70 @@ public class Games extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnFinishActionPerformed
 
+    public static float [] sumfilas (int filas, float columnas, float [][] matriz){
+        float [] fil = new float [filas];        
+            for (int i=0; i <matriz.length; i++){
+                float num;
+                float suma=0;                
+                for (int j=0; j< matriz[i].length; j++){
+                    num=matriz[i][j];
+                    suma+=num;
+                    fil[i]=suma;
+                }
+            }
+        return fil;
+    }
+    
+    public static void imprimir_arreglo(float [] size){
+        DecimalFormat df5 = new DecimalFormat("#.00");
+        for (int i = 0; i < size.length; i++){            
+            System.out.print("[" + df5.format(size[i]) + "]");
+        }
+    }
+    
+    /*public static float [] Resultados(float matriz[][], float [] resultado, float filaActual){
+        float [] temporal = new float[matriz.length];
+        //caso base
+        
+          for (int i=0; i <matriz.length; i++){
+                float num;
+                float suma=0;                
+                for (int j=0; j< matriz[i].length; j++){
+                    num=matriz[i][j];
+                    suma+=num;
+                    fil[i]=suma;
+                }
+            }
+        if(filaActual < matriz.length){
+            int SumaFila = 0;
+            
+            for(int i =0 ; i<matriz[filaActual]; i++){
+                SumaFila + = matriz[i];
+            }
+        }
+         for (int i=0; i <matriz.length; i++){
+                                
+                for (int j=0; j< matriz[i].length; j++){
+                    
+                }
+            }
+         return temporal;
+    }*/
+    
+    /*public static float[] regmejorTiempo (float [][] matriz, float mejorestiempos, int indice){
+        int ronda=3;
+        
+        for (int i=0; i <matriz.length; i++){               
+                for (int j=0; j< matriz[i].length; j++){
+                   if (i<matriz.length){
+                       if (tiempo[indice]<mejorestiempos)
+        }  
+                }
+            }
+       
+    */
+    
+    
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCoke;
