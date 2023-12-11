@@ -9,6 +9,8 @@ import javax.swing.JOptionPane;
 import java.util.Random;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 public class Games extends javax.swing.JFrame {
     int elijio;
@@ -491,7 +493,7 @@ public class Games extends javax.swing.JFrame {
                     case 4 -> eliminado2 = 4;
                     case 5 -> eliminado2 = 5;
                 }
-                puntajesfinales4.remove(eliminado2-1); //-1 es porque sin el tira index out bound
+                puntajesfinales4.remove(eliminado2);
                 
                 int eliminado3 = 0;                
                 switch(indicedelganador(puntajesfinales4, (recursivabuscaeliminado(puntajesfinales4, 0, puntajesfinales4.get(0))))){
@@ -501,7 +503,7 @@ public class Games extends javax.swing.JFrame {
                     case 4 -> eliminado3 = 4;
                     case 5 -> eliminado3 = 5;
                 }
-                puntajesfinales4.remove(eliminado3-1);
+                //puntajesfinales4.remove(eliminado3);
                 JOptionPane.showMessageDialog(null, "Los eliminados son los nadadores " + eliminado2 + " y " + eliminado3);
                 
                 JOptionPane.showMessageDialog(null, "Los puntajes han sido sumados y ya tenemos los ganadores");
@@ -522,14 +524,20 @@ public class Games extends javax.swing.JFrame {
                 
                 break;
                 
-            case 1:      
+            case 1:
+                
+                HashMap < Float, Integer> Indice2 = new HashMap<>();
+                    for (int i = 0; i < puntajesfinales2.size(); i++) {
+                        Indice2.put(puntajesfinales2.get(i), i);
+                    }
+                Collections.sort(puntajesfinales2);
                 float primerLugar = recursivabuscaganador(puntajesfinales2, 0, puntajesfinales2.get(0));
                 float segundoLugar = recursivabuscaganador(puntajesfinales2, 1, puntajesfinales2.get(1));
                 float tercerLugar = recursivabuscaganador(puntajesfinales2, 2, puntajesfinales2.get(2));
                 
-                int indiceP = indicedelganador(puntajesfinales2, recursivabuscaganador(puntajesfinales2, 0, puntajesfinales2.get(0)));
-                int indiceS= indicedelganador(puntajesfinales2, recursivabuscaganador(puntajesfinales2, 1, puntajesfinales2.get(1)));
-                int indiceT = indicedelganador(puntajesfinales2, recursivabuscaganador(puntajesfinales2, 2, puntajesfinales2.get(2)));
+                int indiceP = Indice2.get(primerLugar);
+                int indiceS = Indice2.get(segundoLugar);
+                int indiceT = Indice2.get(tercerLugar);    
                 
                 JOptionPane.showMessageDialog(null, "El primer lugar es para el nadador " + indiceP + " con " + df.format(primerLugar) +
                                    "\nEl segundo lugar es para el nadador " + indiceS + " con " + df.format(segundoLugar) +
@@ -538,29 +546,42 @@ public class Games extends javax.swing.JFrame {
 
                 break;
                 
-            case 2:   
+            case 2:  
+                
+                HashMap < Float, Integer> Indice3 = new HashMap<>();
+                    for (int i = 0; i < puntajesfinales3.size(); i++) {
+                        Indice3.put(puntajesfinales3.get(i), i);
+                    }
+                Collections.sort(puntajesfinales3);
                 float primerLugar1 = recursivabuscaganador(puntajesfinales3, 0, puntajesfinales3.get(0));
                 float segundoLugar1 = recursivabuscaganador(puntajesfinales3, 1, puntajesfinales3.get(1));
                 float tercerLugar1 = recursivabuscaganador(puntajesfinales3, 2, puntajesfinales3.get(2));
                 
-                int indiceP1 = indicedelganador(puntajesfinales3, recursivabuscaganador(puntajesfinales3, 0, puntajesfinales3.get(0)));
-                int indiceS1= indicedelganador(puntajesfinales3, recursivabuscaganador(puntajesfinales3, 1, puntajesfinales3.get(1)));
-                int indiceT1= indicedelganador(puntajesfinales3, recursivabuscaganador(puntajesfinales3, 2, puntajesfinales3.get(2)));
+                int indiceP1 = Indice3.get(primerLugar1);
+                int indiceS1 = Indice3.get(segundoLugar1);
+                int indiceT1 = Indice3.get(tercerLugar1);    
                 
-                JOptionPane.showMessageDialog(null, "El primer lugar es para el nadador " + indiceP1 + " con " + df.format(primerLugar1) +
+                
+                JOptionPane.showMessageDialog(null, "El primer lugar es para el nadador "  + indiceP1 +" con " + df.format(primerLugar1) +
                                    "\nEl segundo lugar es para el nadador " + indiceS1 + " con " + df.format(segundoLugar1) +
                                    "\nEl tercer lugar es para el nadador " + indiceT1 + " con " + df.format(tercerLugar1));
 
                 break;
                 
-            case 3:             
+            case 3:  
+                HashMap < Float, Integer> Indice4 = new HashMap<>();
+                    for (int i = 0; i < puntajesfinales4.size(); i++) {
+                        Indice4.put(puntajesfinales4.get(i), i);
+                    }
+                
+                Collections.sort(puntajesfinales4);
                 float primerLugar2 = recursivabuscaganador(puntajesfinales4, 0, puntajesfinales4.get(0));
                 float segundoLugar2 = recursivabuscaganador(puntajesfinales4, 1, puntajesfinales4.get(1));
                 float tercerLugar2= recursivabuscaganador(puntajesfinales4, 2, puntajesfinales4.get(2));
                 
-                int indiceP2 = indicedelganador(puntajesfinales4, recursivabuscaganador(puntajesfinales4, 0, puntajesfinales4.get(0)));
-                int indiceS2= indicedelganador(puntajesfinales4, recursivabuscaganador(puntajesfinales4, 1, puntajesfinales4.get(1)));
-                int indiceT2= indicedelganador(puntajesfinales4, recursivabuscaganador(puntajesfinales4, 2, puntajesfinales4.get(2)));
+                int indiceP2 = Indice4.get(primerLugar2);
+                int indiceS2 = Indice4.get(segundoLugar2);
+                int indiceT2 = Indice4.get(tercerLugar2);  
                 
                 JOptionPane.showMessageDialog(null, "El primer lugar es para el nadador " + indiceP2 + " con " + df.format(primerLugar2) +
                                    "\nEl segundo lugar es para el nadador " + indiceS2 + " con " + df.format(segundoLugar2) +
@@ -662,62 +683,8 @@ public class Games extends javax.swing.JFrame {
             return recursivabuscaeliminado(puntajes, cont+1, mayor);
         }
            
-    }
-    
-    //public static recursivaganador (float[][])
-    
-    
-    
-    /*float [] temp = new float [nad];
-            for (int k=0; k<temp.length; k++){
-                temp[k]=puntnad;
-            }*/
-    
-    
-    
-    /*public static float [] Resultados(float matriz[][], float [] resultado, float fil){
-        float [] temporal = new float[matriz.length];
-        //caso base
-        
-          for (int i=0; i <matriz.length; i++){
-                float num;
-                float suma=0;                
-                for (int j=0; j< matriz[i].length; j++){
-                    num=matriz[i][j];
-                    suma+=num;
-                    fil[i]=suma;
-                }
-            }
-        if(fil < matriz.length){
-            int SumaFila = 0;
-            
-            for(int i =0 ; i<matriz[filaActual]; i++){
-                SumaFila + = matriz[i];
-            }
-        }
-         for (int i=0; i <matriz.length; i++){
-                                
-                for (int j=0; j< matriz[i].length; j++){
-                    
-                }
-            }
-         return temporal;
-    }*/
-    
-    /*public static float[] regmejort (float [][] matriz, float mtiempos, int indice){
-        int ronda=3;
-        
-        for (int i=0; i <matriz.length; i++){               
-                for (int j=0; j< matriz[i].length; j++){
-                   if (i<matriz.length){
-                       if (tiempo[indice]<mtiempos)
-        }  
-                }
-            }
-       
-    */
-    
-    
+    }    
+  
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCoke;
